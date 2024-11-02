@@ -56,17 +56,3 @@ foreach (CountryCode::cases() as $country_code) {
 ```php
 
 ```
-
-or
-
-```php
-use DarksLight2\BetsApiSDK\RequestMaker;
-use DarksLight2\BetsApiSDK\Enums\SportType;
-use DarksLight2\BetsApiSDK\Hydrate\EventHydrate;
-use DarksLight2\BetsApiSDK\DTO\EventDTO;
-
-EventHydrate::hydrate(RequestMaker::inPlay(SportType::Soccer))
-  ->each(function (EventDTO $event) {
-    // do something...
-  });
-```
