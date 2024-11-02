@@ -2,7 +2,7 @@
 
 namespace DarksLight2\BetsApiSDK\DTO;
 
-class LeagueDTO
+readonly class LeagueDTO
 {
     public function __construct(
         public int $id,

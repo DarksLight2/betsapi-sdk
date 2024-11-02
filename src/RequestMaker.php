@@ -35,6 +35,10 @@ class RequestMaker
                     ->get($endpoint, array_merge($queries, ['page' => $current_page]));
 
                 $data = self::resolveErrors($response);
+
+                if(!isset($data['pager']))
+                    return $data['results'];
+
                 $pages_amount = (int)round($data['pager']['total'] / $data['pager']['per_page']) + 1;
                 $result = array_merge($result, $data['results']);
             } while ($data['pager']['page'] !== $pages_amount);
@@ -47,12 +51,11 @@ class RequestMaker
         }
     }
 
-    public static function make(string $uri, SportType $sport_type, array $queries = []): array
+    public static function make(string $uri, ?SportType $sport_type = null, array $queries = []): array
     {
-        $q = [
-            'sport_id' => $sport_type->value,
-            'token' => config('betsapi-sdk.token')
-        ];
+        $q = ['token' => config('betsapi-sdk.token')];
+
+        if(isset($sport_type)) $q['sport_id'] = $sport_type->value;
 
         $endpoint = config('betsapi-sdk.url') . $uri;
 
@@ -132,23 +135,22 @@ class RequestMaker
 
     }
 
-    public function odds(
+    public static function odds(
         string|int $event_id,
         ?string $source = null,
         ?string $since_time = null,
         ?string $odds_market = null,
     )
     {
-        throw new \Exception('Not implemented');
         $q = ['event_id' => $event_id];
 
         if(!is_null($source)) $q['source'] = $source;
         if(!is_null($since_time)) $q['since_time'] = $since_time;
         if(!is_null($odds_market)) $q['odds_market'] = $odds_market;
 
-        $uri = '/' . config('betsapi-sdk.endpoint_versions.odds') . '/events/upcoming';
+        $uri = '/' . config('betsapi-sdk.endpoint_versions.odds') . '/event/odds';
 
-        return self::make($uri, $q);
+        return self::make($uri, queries: $q);
     }
 
     public function statsTrend()
