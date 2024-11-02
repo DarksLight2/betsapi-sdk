@@ -13,7 +13,6 @@ class BetsApiSDKServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/betsapi-sdk.php');
         $this->publishes([
             __DIR__.'/../config/betsapi-sdk.php' => config_path('betsapi-sdk.php'),
         ], 'betsapi-sdk-config');
