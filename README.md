@@ -10,7 +10,7 @@ BETSAPI_TOKEN=
 BETSAPI_URL=https://api.b365api.com
 ```
 
-# Usning
+# Using
 
 ```php
 use DarksLight2\BetsApiSDK\RequestMaker;
