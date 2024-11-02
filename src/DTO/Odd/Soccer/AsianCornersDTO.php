@@ -11,7 +11,7 @@ readonly class AsianCornersDTO
         public string $under_od,
         public ?string $ss,
         public ?string $ss2,
-        public ?int $time_str,
+        public int|string|null $time_str,
         public int $add_time,
     ) {}
 }

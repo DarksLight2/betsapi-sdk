@@ -134,7 +134,7 @@ class RequestMaker
 
     }
 
-    public function oddsSummary(string|int $event_id, ?int $limit = null)
+    public static function oddsSummary(string|int $event_id, ?int $limit = null)
     {
         $q = ['event_id' => $event_id];
         $uri = '/' . config('betsapi-sdk.endpoint_versions.odds_summary') . '/event/odds/summary';

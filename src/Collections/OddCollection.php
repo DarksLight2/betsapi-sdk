@@ -3,7 +3,7 @@
 namespace DarksLight2\BetsApiSDK\Collections;
 
 use Illuminate\Support\Collection;
-use DarksLight2\BetsApiSDK\Hydrate\OddHydrate;
+use DarksLight2\BetsApiSDK\OddDTOResolver;
 use DarksLight2\BetsApiSDK\DTO\Odd\Soccer;
 
 class OddCollection extends Collection
@@ -11,7 +11,7 @@ class OddCollection extends Collection
     public function latest(): self
     {
         return $this->map(function ($odds, $marketKey) {
-            $dtoClass = OddHydrate::resolveDTO($marketKey);
+            $dtoClass = OddDTOResolver::resolve($marketKey);
 
             if ($dtoClass === Soccer\TimeResultDTO::class) {
                 return $odds->sortByDesc('add_time')->first();

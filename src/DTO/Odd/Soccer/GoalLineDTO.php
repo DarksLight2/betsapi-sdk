@@ -10,7 +10,7 @@ readonly class GoalLineDTO
         public string $handicap,
         public string $under_od,
         public ?string $ss,
-        public ?int $time_str,
+        public int|string|null $time_str,
         public int $add_time,
     ) {}
 }
