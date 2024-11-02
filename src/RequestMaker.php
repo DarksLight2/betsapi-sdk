@@ -163,9 +163,14 @@ class RequestMaker
 
     }
 
-    public function leagues()
+    public static function leagues(
+        SportType $sport_type,
+        ?CountryCode $country_code = null
+    )
     {
-        throw new \Exception('Not implemented');
+        $q = is_null($country_code) ? [] : ['cc' => $country_code->value];
+        $uri = '/' . config('betsapi-sdk.endpoint_versions.league') . '/league';
 
+        return self::make($uri, $sport_type, $q);
     }
 }
