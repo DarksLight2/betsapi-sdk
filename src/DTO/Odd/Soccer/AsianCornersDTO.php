@@ -9,9 +9,9 @@ readonly class AsianCornersDTO
         public string $over_od,
         public string $handicap,
         public string $under_od,
-        public string $ss,
+        public ?string $ss,
         public ?string $ss2,
-        public int $time_str,
+        public ?int $time_str,
         public int $add_time,
     ) {}
 }

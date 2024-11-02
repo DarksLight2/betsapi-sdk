@@ -4,21 +4,26 @@ namespace DarksLight2\BetsApiSDK\Hydrate;
 
 use Illuminate\Support\Collection;
 use DarksLight2\BetsApiSDK\DTO\Odd\Soccer;
+use DarksLight2\BetsApiSDK\Collections\OddCollection;
 
 class OddHydrate
 {
-    public static function hydrate(array $markets): Collection
+    public static function hydrate(array $markets): OddCollection
     {
-        return collect($markets)->map(function ($odds, string $market_key) {
-            foreach ($odds as $odd) {
+        $c = new OddCollection();
+
+        foreach ($markets as $market_key => $market) {
+            $odds_collection = collect();
+            foreach ($market as $odd) {
                 $dto_class = self::resolveDTO($market_key);
-                return new $dto_class(...$odd);
+                $odds_collection->push(new $dto_class(...$odd));
             }
-            return null;
-        });
+            $c->put($market_key, $odds_collection);
+        }
+        return $c;
     }
 
-    private static function resolveDTO(string $market_key): string
+    public static function resolveDTO(string $market_key): string
     {
         return match ($market_key) {
             '1_1', '1_8' => Soccer\TimeResultDTO::class,
