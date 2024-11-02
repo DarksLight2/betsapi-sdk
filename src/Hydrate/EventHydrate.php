@@ -91,8 +91,8 @@ class EventHydrate
                 away_saves: isset($event['stats']['saves']) ? $event['stats']['saves'][1] : 0,
                 home_shots_blocked: isset($event['stats']['shots_blocked']) ? $event['stats']['shots_blocked'][0] : 0,
                 away_shots_blocked: isset($event['stats']['shots_blocked']) ? $event['stats']['shots_blocked'][1] : 0,
-                home_xg: isset($event['stats']['xg']) ? $event['stats']['xg'][0] : 0,
-                away_xg: isset($event['stats']['xg']) ? $event['stats']['xg'][1] : 0,
+                home_xg: isset($event['stats']['xg']) ? floatval($event['stats']['xg'][0]) : 0,
+                away_xg: isset($event['stats']['xg']) ? floatval($event['stats']['xg'][1]) : 0,
                 home_yellow_red_cards: isset($event['stats']['yellowred_cards']) ? $event['stats']['yellowred_cards'][0] : 0,
                 away_yellow_red_cards: isset($event['stats']['yellowred_cards']) ? $event['stats']['yellowred_cards'][1] : 0
             );
