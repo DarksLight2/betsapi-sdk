@@ -20,7 +20,7 @@ class OddSummaryHydrate
                         continue;
                     }
                     $dto_class = OddDTOResolver::resolve($market_key);
-                    $odds_collection->push(new $dto_class(...$odd));
+                    $odds_collection->put($market_key, new $dto_class(...$odd));
                 }
                 $variants_collection->put($variant_key, $odds_collection);
             }
