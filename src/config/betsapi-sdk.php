@@ -28,7 +28,7 @@ return [
         'bet365_api'     => [
             'inplay_filter'  => 'v1/bet365',
             'result'         => 'v1/bet365',
-            'pre_match_odds' => 'v3/bet365',
+            'upcoming' => 'v1/bet365',
         ],
     ]
 ];

@@ -2,6 +2,7 @@
 
 namespace DarksLight2\BetsApiSDK\Bet365API;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 use DarksLight2\BetsApiSDK\Bet365API\Enums\SportType;
@@ -79,6 +80,24 @@ class RequestMaker
 
         $uri = '/' . config('betsapi-sdk.endpoint_versions.bet365_api.inplay_filter') . '/inplay_filter';
 
+        return self::make($uri, $sport_type, queries: $q, limit: $limit);
+    }
+
+    public static function upcoming(
+        SportType $sport_type,
+        string|int|null $league_id = null,
+        int|null        $limit = null,
+        bool            $skip_esports = false,
+        string|Carbon $day = null
+    )
+    {
+        $q = [];
+
+        if(!is_null($league_id)) $q['league_id'] = $league_id;
+        if(!is_null($day)) $q['day'] = is_string($day) ? $day : $day->format('Ymd');
+        if(!is_null($skip_esports)) $q['skip_esports'] = $skip_esports;
+
+        $uri = '/' . config('betsapi-sdk.endpoint_versions.bet365_api.upcoming') . '/upcoming';
         return self::make($uri, $sport_type, queries: $q, limit: $limit);
     }
 
