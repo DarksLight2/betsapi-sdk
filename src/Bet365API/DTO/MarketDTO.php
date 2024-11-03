@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 class MarketDTO
 {
     public function __construct(
-        public int $id,
+        public int|string $id,
         public string $name,
         public Collection $odds
     ) {}
