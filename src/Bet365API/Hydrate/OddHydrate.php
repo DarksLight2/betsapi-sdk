@@ -15,6 +15,9 @@ class OddHydrate
 {
     public static function hydrate(array $data): Collection
     {
+        if(!isset($data[0]['others']) || !isset($data[0]['main']))
+            return collect();
+
         $others = array_reduce($data[0]['others'], function ($carry, $item) {
             return array_merge($carry, $item['sp']);
         }, []);
