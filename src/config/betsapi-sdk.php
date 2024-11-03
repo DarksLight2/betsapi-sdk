@@ -25,9 +25,10 @@ return [
             'tennis_ranking' => 'v1',
             'merge_history'  => 'v1',
         ],
-        'bet365_api' => [
-            'inplay_filter' => 'v1/bet365',
-            'result'        => 'v1/bet365',
+        'bet365_api'     => [
+            'inplay_filter'  => 'v1/bet365',
+            'result'         => 'v1/bet365',
+            'pre_match_odds' => 'v3/bet365',
         ],
     ]
 ];

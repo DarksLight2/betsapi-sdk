@@ -82,6 +82,12 @@ class RequestMaker
         return self::make($uri, $sport_type, queries: $q, limit: $limit);
     }
 
+    public static function preMatchOdds(string|int $event_id)
+    {
+        $uri = '/' . config('betsapi-sdk.endpoint_versions.bet365_api.pre_match_odds') . '/prematch';
+        return self::make($uri, queries: ['FI' => $event_id]);
+    }
+
     public static function result(string|int $event_id)
     {
         $uri = '/' . config('betsapi-sdk.endpoint_versions.bet365_api.result') . '/result';
