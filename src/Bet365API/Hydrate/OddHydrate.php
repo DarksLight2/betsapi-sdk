@@ -34,7 +34,7 @@ class OddHydrate
                     id: $odd['id'],
                     odds: $odd['odds'],
                     header: $odd['header'] ?? '',
-                    name: $odd['name'],
+                    name: $odd['name'] ?? '',
                     handicap: $odd['handicap'] ?? ''
                 ));
             }
