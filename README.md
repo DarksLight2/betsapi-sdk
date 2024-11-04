@@ -31,6 +31,28 @@ EventHydrate::hydrate(RequestMaker::inPlayFilter(SportType::Soccer))
         // do something...
     })
 ```
+
+or with Generator
+
+Available filtering data by limits
+```php
+use DarksLight2\BetsApiSDK\Bet365API\GeneratorRequestMaker;
+use DarksLight2\BetsApiSDK\Bet365API\Enums\TimeStatus;
+use DarksLight2\BetsApiSDK\Bet365API\Enums\SportType;
+
+$generator = GeneratorRequestMaker::upcoming(SportType::Soccer, day: now(), data_limit: [
+    'time_status' => [
+        TimeStatus::InPlay->value => 10,
+        TimeStatus::NotStarted->value => 10,
+    ]
+];
+
+foreach ($generator) as $events) {
+    if(empty($events)) continue;
+    dump(EventHydrate::hydrate($events));
+}
+```
+
 ### Getting result
 Available fot `soccer`, `volleyball`, `basketball`, `baseball`.
 
