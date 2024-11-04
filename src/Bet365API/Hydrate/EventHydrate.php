@@ -40,7 +40,7 @@ class EventHydrate
                 ss: $event['ss'] ?? '0-0',
                 our_event_id: $event['our_event_id'],
                 r_id: $event['r_id'],
-                ev_id: $event['ev_id'],
+                ev_id: $event['ev_id'] ?? '',
                 updated_at: $event['updated_at'],
             );
         });

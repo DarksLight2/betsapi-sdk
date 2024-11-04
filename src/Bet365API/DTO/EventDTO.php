@@ -17,8 +17,8 @@ readonly class EventDTO
         public EventTeamDTO $away,
         public ?string $ss,
         public string|int $our_event_id,
-        public string|int $r_id,
-        public string|int $ev_id,
+        public string|int|null $r_id,
+        public string|int|null $ev_id,
         public int $updated_at,
     ) {}
 }
